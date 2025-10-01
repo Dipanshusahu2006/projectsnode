@@ -8,15 +8,16 @@ require("./Mongodp/mongodpconnect")
 
 const server = express();
 
-server.use(cors({ origin: "*" }));
+server.use(cors( origin = "*" ));
 server.use(bodyParser.json()); 
 
 server.get("/", (req, res) => {
   res.send("🚀 Hello! Your Vercel server is working.");
 });
-const Routes = require("./Routes/Userrotes");
 
-server.use("/Users", Routes);
+const UserRouter = require("./Routes/Userrotes");
+
+server.use("/user", UserRouter);
 
 const port = 8000;
  

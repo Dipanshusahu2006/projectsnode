@@ -1,12 +1,12 @@
 const express = require("express");
 const  Userss = require("../usermodel/Users");
-const Routes = express.Router();
+const UserRouter = express.Router();
 
- Routes.post("/Userpost", async(req,res)=>{
+ UserRouter.post("/Userpost", async(req,res)=>{
     const Myusers = new Userss(req.body);
       const Savedata = await Myusers.save();
       if (Savedata) {
-      res.status(201).json({
+      res.status(200).json({
         message: "User saved successfully",
         data: Savedata
       });
@@ -16,9 +16,10 @@ const Routes = express.Router();
       });
     }
  })
-  Routes.get("/Usersget",async(req,res)=>{
+
+  UserRouter.get("/Usersget",async(req,res)=>{
      const Data = await Userss.find();
       res.json({ Data: Data });
     })
 
-    module.exports = Routes;
+    module.exports = UserRouter;
