@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser")
 
-const Routes = require("./Routes/Userrotes");
+
 require("./Mongodp/mongodpconnect")
 
 
@@ -11,13 +11,15 @@ const server = express();
 server.use(cors({ origin: "*" }));
 server.use(bodyParser.json()); 
 
+server.get("/", (req, res) => {
+  res.send("🚀 Hello! Your Vercel server is working.");
+});
+const Routes = require("./Routes/Userrotes");
+
 server.use("/Users", Routes);
 
- 
 const port = 8000;
-
-
+ 
 server.listen(port,(req,res)=>{
-    console.log(`Server is running at http://localhost:${port}`);
-});
-
+    console.log(`server runnin at http://localhost:${port}`);
+})
